@@ -5,11 +5,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "nodejs",
+    "express",
+    "firebase",
+    "firestore"
+  ],
+  "author": "Hamam Priyatmoko",
   "type": "module",
   "license": "ISC",
-  "description": "",
+  "description": "Membuat Sebuah Api dengan Penyimpanan Firebase Firestore",
   "dependencies": {
     "express": "^5.1.0",
     "firebase-admin": "^13.4.0",

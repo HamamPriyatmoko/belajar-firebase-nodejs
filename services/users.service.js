@@ -8,13 +8,23 @@ export class UsersService {
   getDataUsers = async () => {
     const userCollection = await db.collection('users').get();
     userCollection.forEach((doc) => {
-      this.users.push(doc.data());
+      this.users.push(Object.assign({ id: doc.id }, doc.data()));
     });
     return this.users;
   };
 
   addDataUser = async (objectData) => {
     const respon = await db.collection('users').doc(uuidv4()).set(objectData);
+    return respon;
+  };
+
+  updateDataUser = async (id, data) => {
+    const userRef = db.collection('users').doc(id);
+    const doc = await userRef.get();
+    if (!doc.exists) {
+      return null;
+    }
+    const respon = await userRef.update(data);
     return respon;
   };
 }

@@ -45,14 +45,20 @@ app.post('/api', async (req, res) => {
 
 app.put('/api/:id', async (req, res) => {
   try {
+    const id = req.params.id;
     const data = req.body;
-    if (!data) {
-      res.status(400).json({
-        message: 'Bad Request: Data Tidak Valid',
+    const respon = await users.updateDataUser(id, data);
+
+    if (!respon) {
+      res.status(404).json({
+        message: 'User Tidak Ditemukan',
       });
     }
-    const respon = await users.updateDataUser(req.params.id);
-    res.status(200).json(respon);
+
+    res.status(200).json({
+      message: 'Succes',
+      data: `Data Berhasil Di Update`,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json({
