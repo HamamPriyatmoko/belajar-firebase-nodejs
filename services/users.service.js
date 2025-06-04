@@ -1,7 +1,9 @@
-const db = require('../firestore/config.js');
+import database from '../firestore/config.cjs';
+const { db } = database;
 
-class usersService {
+export class UsersService {
   users = [];
+
   getDataUsers = async () => {
     const userCollection = await db.collection('users').get();
     userCollection.forEach((doc) => {
@@ -10,5 +12,3 @@ class usersService {
     return this.users;
   };
 }
-
-module.exports = { usersService };

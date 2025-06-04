@@ -1,4 +1,4 @@
-const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
+const { initializeApp, cert } = require('firebase-admin/app');
 const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
 
 const serviceAccount = require('../belajar-nodejs-firebase-firebase-adminsdk-fbsvc-6b424b9664.json');
@@ -8,5 +8,4 @@ initializeApp({
 });
 
 const db = getFirestore();
-
-module.exports = db;
+exports.db = db;
