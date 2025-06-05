@@ -16,8 +16,11 @@
   "license": "ISC",
   "description": "Membuat Sebuah Api dengan Penyimpanan Firebase Firestore",
   "dependencies": {
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "firebase-admin": "^13.4.0",
-    "uuid": "^11.1.0"
+    "nodemailer": "^7.0.3",
+    "uuid": "^11.1.0",
+    "yup": "^1.6.1"
   }
 }

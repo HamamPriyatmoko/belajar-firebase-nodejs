@@ -1,5 +1,8 @@
 import express, { json } from 'express';
 import routes from './routes/api.js';
+import dotenv from 'dotenv';
+dotenv.config();
+
 const app = express();
 const port = 3000;
 

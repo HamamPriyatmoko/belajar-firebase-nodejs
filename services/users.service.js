@@ -24,7 +24,7 @@ export class UsersService {
       const userCredential = await auth.createUser(data);
       const email = userCredential.email;
       const link = await auth.generateEmailVerificationLink(email);
-      const info = await sendEmailVerification(email, link);
+      const info = await sendEmailVerification(email, userCredential.displayName, link);
       console.log(userCredential);
       console.log(info);
       return { userCredential, info };
