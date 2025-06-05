@@ -67,6 +67,29 @@ app.put('/api/:id', async (req, res) => {
   }
 });
 
+app.delete('/api/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const respon = await users.deleteDataUser(id);
+
+    if (!respon) {
+      return res.status(404).json({
+        message: 'User Tidak Ditemukan',
+      });
+    }
+
+    return res.status(200).json({
+      message: 'Succes',
+      data: `Data Berhasil Di Hapus`,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: 'Gagal Menghapus Data di dalam Database',
+    });
+  }
+});
+
 app.listen(port, () => {
   console.log(`This App Is Running in http://localhost:${port}`);
 });

@@ -3,14 +3,13 @@ import { v4 as uuidv4 } from 'uuid';
 const { db } = database;
 
 export class UsersService {
-  users = [];
-
   getDataUsers = async () => {
     const userCollection = await db.collection('users').get();
+    let users = [];
     userCollection.forEach((doc) => {
-      this.users.push(Object.assign({ id: doc.id }, doc.data()));
+      users.push(Object.assign({ id: doc.id }, doc.data()));
     });
-    return this.users;
+    return users;
   };
 
   addDataUser = async (objectData) => {
@@ -24,7 +23,17 @@ export class UsersService {
     if (!doc.exists) {
       return null;
     }
-    const respon = await userRef.update(data);
-    return respon;
+    const update = await userRef.update(data);
+    return update;
+  };
+
+  deleteDataUser = async (id) => {
+    const userRef = await db.collection('users').doc(id);
+    const doc = await userRef.get();
+    if (!doc.exists) {
+      return null;
+    }
+    const deleteUser = await userRef.delete();
+    return deleteUser;
   };
 }
