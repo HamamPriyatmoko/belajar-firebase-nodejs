@@ -88,7 +88,15 @@ router.delete('/users/:id', async (req, res) => {
 router.post('/register', async (req, res) => {
   try {
     const data = await users.registerUser(req.body);
-    res.status(200).json({ message: 'User register successfully', data });
+    const message = {
+      status: 'User Register Succesfully',
+      uid: data.userCredential.uid,
+      email: data.userCredential.email,
+      verified: data.userCredential.emailVerified,
+      username: data.userCredential.displayName,
+      phone: data.userCredential.phoneNumber,
+    };
+    res.status(200).json({ message });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
